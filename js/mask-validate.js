@@ -31,7 +31,7 @@ new window.JustValidate('.contacts__form', {
 
     xhr.onreadystatechange = function() {
       if ((xhr.readyState === 4) && (xhr.status === 200)) {
-          console.log('Отправлено');
+          alert('Даннные отправлены!');
         }
     }
 

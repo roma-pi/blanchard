@@ -2061,6 +2061,11 @@ a {
 }
 
 .contacts__content {
+  display: flex;
+  flex-basis: 100%;
+}
+
+.contacts__text-content {
   flex-basis: calc(50% - 278px);
   padding: 123px 121px 123px calc(50vw - 801px);
   border: 1px solid var(--lite-grey);
@@ -2190,6 +2195,7 @@ a {
 
 .contacts__map {
   flex-basis: calc(50% + 277px);
+  height: 700px;
 }
 
 .ymaps-2-1-79-ground-pane {
@@ -2378,7 +2384,7 @@ a {
 
   /* Contacts 1700 */
 
-  .contacts__content {
+  .contacts__text-content {
     flex-basis: calc(13vw + 351px);
     padding-left: 49px;
   }
@@ -2677,7 +2683,7 @@ a {
 
   /* Contacts 1200 */
 
-  .contacts__content {
+  .contacts__text-content {
     flex-basis: calc(11.4vw + 370px);
     padding-right: calc(11.4vw - 16px);
     padding-bottom: calc(11.4vw - 14px);
@@ -3072,7 +3078,7 @@ a {
 
   /* Contacts 1024 */
 
-  .contacts__content {
+  .contacts__text-content {
     flex-basis: calc(22.3vw + 259px);
     padding-right: calc(22.3vw - 127px);
   }
@@ -3869,7 +3875,7 @@ a {
     padding-top: calc(11.2vw - 6px);
   }
 
-  .contacts__content {
+  .contacts__text-content {
     flex-basis: 56%;
     padding: calc(45.9vw - 231px) calc(10.8vw - 39px) calc(22.4vw - 69px) calc(9.9vw - 27px);
   }
@@ -4640,7 +4646,7 @@ a {
     position: relative;
   }
 
-  .contacts__content {
+  .contacts__text-content {
     flex-basis: 100%;
     padding: 0 15px 30px 4.7%;
     border: none;

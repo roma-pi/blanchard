@@ -3909,37 +3909,39 @@
         <h2 class="section-heading contacts__heading">Контакты</h2>
       </div>
       <div class="contacts__content">
-        <address class="contacts__address">
-          <p class="section-subheading contacts__address-heading">Шоурум №4</p>
-          <p class="contacts__address-text">
-            Леонтьевский переулок, дом 5/1
-          </p>
-        </address>
-        <form action="php/mail.php" enctype="multipart/form-data" method="POST" class="contacts__form">
-          <input type="hidden" name="admin_email[]" value="roma_pi@mail.ru">
-		      <input type="hidden" name="form_subject" value="Тема письма">
-          <h3 class="section-subheading contacts__form-heading">Заказать обратный звонок</h3>
-          <label class="contacts__form-label">
-            <input type="text" placeholder="Имя*" data-validate-field="name" name="name" class="contacts__form-input">
-          </label>
-          <label class="contacts__form-label">
-            <input type="tel" placeholder="Телефон*" data-validate-field="phone" name="phone" class="contacts__form-input">
-          </label>
-          <button class="btn contacts__form-btn">Заказать</button>
-        </form>
-        <article class="contacts__messaging">
-          <h3 class="section-subheading contacts__messaging-heading">Связаться в один клик</h3>
-          <ul class="contacts__messaging-list">
-            <li class="contacts__messaging-item">
-              <a href="https://wa.me/#" aria-label="Whatsapp" class="contacts__messaging-lnk contacts__messaging-lnk_whatsapp"></a>
-            </li>
-            <li class="contacts__messaging-item">
-              <a href="https://t.me/#" aria-label="Телеграм" class="contacts__messaging-lnk contacts__messaging-lnk_telegram"></a>
-            </li>
-          </ul>
-        </article>
+        <div class="contacts__text-content">
+          <address class="contacts__address">
+            <p class="section-subheading contacts__address-heading">Шоурум №4</p>
+            <p class="contacts__address-text">
+              Леонтьевский переулок, дом 5/1
+            </p>
+          </address>
+          <form action="php/mail.php" enctype="multipart/form-data" method="POST" class="contacts__form">
+            <input type="hidden" name="admin_email[]" value="roma_pi@mail.ru">
+            <input type="hidden" name="form_subject" value="Тема письма">
+            <h3 class="section-subheading contacts__form-heading">Заказать обратный звонок</h3>
+            <label class="contacts__form-label">
+              <input type="text" placeholder="Имя*" data-validate-field="name" name="name" class="contacts__form-input">
+            </label>
+            <label class="contacts__form-label">
+              <input type="tel" placeholder="Телефон*" data-validate-field="phone" name="phone" class="contacts__form-input">
+            </label>
+            <button class="btn contacts__form-btn">Заказать</button>
+          </form>
+          <article class="contacts__messaging">
+            <h3 class="section-subheading contacts__messaging-heading">Связаться в один клик</h3>
+            <ul class="contacts__messaging-list">
+              <li class="contacts__messaging-item">
+                <a href="https://wa.me/#" aria-label="Whatsapp" class="contacts__messaging-lnk contacts__messaging-lnk_whatsapp"></a>
+              </li>
+              <li class="contacts__messaging-item">
+                <a href="https://t.me/#" aria-label="Телеграм" class="contacts__messaging-lnk contacts__messaging-lnk_telegram"></a>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div tabindex="0" aria-roledescription="Карта" class="contacts__map" id="map"></div>
       </div>
-      <div tabindex="0" aria-roledescription="Карта" class="contacts__map" id="map"></div>
     </section>
   </main>
   <footer aria-label="Подвал сайта" class="footer">
@@ -4006,13 +4008,7 @@
 
 </html>
 
-<!-- tabs.js кликк по документу
-количество элементов в открывашке
-модальное окно по центру - скролл отключать
-при переключении страны - меняется кто-то
-кружок плавно при переключении
-input type number - для цены
-Партнёры проектов - ссылки
+<!--
 Форма отправлено - модальное окно
 
 Контакты - ломается на 5000
