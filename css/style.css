@@ -4528,12 +4528,15 @@ a {
   .publishings__categories-text {
     top: 7px;
     display: none;
-    max-width: unset;
     padding: 0 20px 9px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     line-height: 22px;
     opacity: 0;
     transition: 0.3s opacity ease;
+  }
+
+  .publishings__categories-label:nth-child(n) .publishings__categories-text {
+    max-width: unset;
   }
 
   .publishings__categories-text::before {
