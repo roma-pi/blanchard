@@ -18,6 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.header__search-form').classList.add('header__search-form_active');
     document.querySelector('.header__search-label').classList.add('header__search-label_active');
     document.querySelector('.header__search-btn').classList.add('header__search-btn_active');
+    if (document.documentElement.clientWidth > 1200) {
+      document.querySelector('.header__search-form').submit();
+    } else {
+      document.querySelector('.header__search-btn_active').addEventListener('click', () => {
+        document.querySelector('.header__search-form').submit();
+      });
+    }
   })
 
   document.addEventListener('click', function(event) {
