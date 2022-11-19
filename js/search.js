@@ -1,38 +1,44 @@
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('.header__search-label').addEventListener('click', function(event) {
-    document.querySelector('.header__search-input').classList.add('header__search-input_active');
-    document.querySelector('.header__search-input').placeholder = '';
-  })
+document.addEventListener('DOMContentLoaded', () => {
+  const searchForm = document.querySelector('.header__search-form');
+  const searchLabel = document.querySelector('.header__search-label');
+  const searchInput = document.querySelector('.header__search-input');
+  const searchBtn = document.querySelector('.header__search-btn');
 
-  document.querySelector('.header__search-label').addEventListener('keypress', function(event) {
-    document.querySelector('.header__search-input').classList.add('header__search-input_active');
-    document.querySelector('.header__search-input').placeholder = '';
-  })
+  searchLabel.addEventListener('click', () => {
+    searchInput.classList.add('header__search-input_active');
+    searchInput.placeholder = '';
+  });
 
-  document.querySelector('.header__search-input').addEventListener('blur', function(event) {
-    event.currentTarget.classList.remove('header__search-input_active');
-    event.currentTarget.placeholder = 'Поиск по сайту';
-  })
+  searchLabel.addEventListener('keypress', () => {
+    searchInput.classList.add('header__search-input_active');
+    searchInput.placeholder = '';
+  });
 
-  document.querySelector('.header__search-btn').addEventListener('click', function() {
-    document.querySelector('.header__search-form').classList.add('header__search-form_active');
-    document.querySelector('.header__search-label').classList.add('header__search-label_active');
-    document.querySelector('.header__search-btn').classList.add('header__search-btn_active');
+  searchInput.addEventListener('blur', () => {
+    searchInput.classList.remove('header__search-input_active');
+    searchInput.placeholder = 'Поиск по сайту';
+  });
+
+  searchBtn.addEventListener('click', () => {
+    searchForm.classList.add('header__search-form_active');
+    searchLabel.classList.add('header__search-label_active');
+    searchBtn.classList.add('header__search-btn_active');
     if (document.documentElement.clientWidth > 1200) {
-      document.querySelector('.header__search-form').submit();
+      searchForm.submit();
     } else {
-      document.querySelector('.header__search-btn_active').addEventListener('click', () => {
-        document.querySelector('.header__search-form').submit();
+      const activeSearchBtn = document.querySelector('.header__search-btn_active');
+      activeSearchBtn.addEventListener('click', () => {
+        searchForm.submit();
       });
     }
-  })
+  });
 
-  document.addEventListener('click', function(event) {
+  document.addEventListener('click', event => {
     if (!event.target.classList.contains('header__search-btn') &&
     !event.target.classList.contains('header__search-btn-icon') && !event.target.classList.contains('header__search-input')) {
-      document.querySelector('.header__search-form').classList.remove('header__search-form_active');
-      document.querySelector('.header__search-label').classList.remove('header__search-label_active');
-      document.querySelector('.header__search-btn').classList.remove('header__search-btn_active');
+      searchForm.classList.remove('header__search-form_active');
+      searchLabel.classList.remove('header__search-label_active');
+      searchBtn.classList.remove('header__search-btn_active');
     }
-  })
-})
+  });
+});

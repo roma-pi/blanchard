@@ -1,137 +1,156 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const body = document.querySelector('body');
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const movementsLinkList = document.querySelectorAll('.header__movements-link');
+  const artistBtnList = document.querySelectorAll('.catalog__artist-btn');
+  const countryBtnList = document.querySelectorAll('.catalog__btn');
+  const eventsBtn = document.querySelector('.events__btn');
+  const eventListToShow = document.querySelectorAll('.events__item');
+  const gallerySlideList = document.querySelectorAll('.gallery__slide');
+  const closeModalBtnList = document.querySelectorAll('.gallery__modal-close');
+  const smoothLinkList = document.querySelectorAll('a[href^="#"]');
 
-  document.querySelectorAll('.header__movements-link').forEach(function(movementsLink) {
-    movementsLink.addEventListener('click', function(event) {
+  movementsLinkList.forEach(movementsLink => {
+    movementsLink.addEventListener('click', event => {
       const path = event.currentTarget.dataset.path;
+      const activeMovementsLinkList = document.querySelectorAll(`.header__movements-link_active:not([data-path="${path}"])`);
+      const targetArtistsList = document.querySelector(`[data-target="${path}"]`);
+      const activeArtistsListArr = document.querySelectorAll(`.header__artists-list_active:not([data-target="${path}"])`);
 
       movementsLink.classList.toggle('header__movements-link_active');
-      document.querySelectorAll(`.header__movements-link_active:not([data-path="${path}"])`).forEach(function(activeMovementsLink) {
+      activeMovementsLinkList.forEach(activeMovementsLink => {
         activeMovementsLink.classList.remove('header__movements-link_active');
       })
-
-      document.querySelector(`[data-target="${path}"]`).classList.toggle('header__artists-list_active');
-      document.querySelectorAll(`.header__artists-list_active:not([data-target="${path}"])`).forEach(function(artistListToClose) {
-        artistListToClose.classList.remove('header__artists-list_active');
+      targetArtistsList.classList.toggle('header__artists-list_active');
+      activeArtistsListArr.forEach(artistsListToClose => {
+        artistsListToClose.classList.remove('header__artists-list_active');
       })
     })
-  })
+  });
 
-  document.addEventListener('click', function(event) {
-    let target = event.target;
+  document.addEventListener('click', event => {
+    const target = event.target;
 
     if (!target.closest('.header__movements-link') && !target.closest('.header__artists-list')) {
-      document.querySelectorAll('.header__movements-link_active').forEach(function(activeMovementsLink) {
+      const activeMovementsLinkList = document.querySelectorAll('.header__movements-link_active');
+      const activeArtistsListArr = document.querySelectorAll('.header__artists-list_active');
+
+      activeMovementsLinkList.forEach(activeMovementsLink => {
         activeMovementsLink.classList.remove('header__movements-link_active');
       })
-
-      document.querySelectorAll('.header__artists-list_active').forEach(function(artistListToClose) {
+      activeArtistsListArr.forEach(artistListToClose => {
         artistListToClose.classList.remove('header__artists-list_active');
       })
     }
 
     if (!target.closest('.gallery__modal') && !target.closest('.gallery__slide')) {
-      document.querySelectorAll('.gallery__modal_active').forEach(function(modalActive) {
-        modalActive.classList.remove('gallery__modal_active');
+      const activeModalList = document.querySelectorAll('.gallery__modal_active');
+      const activeModalShade = document.querySelector('.modal-active');
+
+      activeModalList.forEach(activeModal => {
+        activeModal.classList.remove('gallery__modal_active');
       })
-      let modalActiveShade = document.querySelector('.modal-active');
-      if (modalActiveShade) {
-        modalActiveShade.classList.remove('modal-active');
+      if (activeModalShade) {
+        activeModalShade.classList.remove('modal-active');
         body.style = '';
       }
     }
-  })
+  });
 
-  document.querySelectorAll('.catalog__artist-btn').forEach(function(artistBtn) {
-    artistBtn.addEventListener('click', function(event) {
-      document.querySelectorAll('.catalog__artist-btn').forEach(function(artistBtnList) {
-        artistBtnList.classList.remove('catalog__artist-btn_active');
-      })
-      artistBtn.classList.add('catalog__artist-btn_active');
-
+  artistBtnList.forEach(artistBtn => {
+    artistBtn.addEventListener('click', event => {
       const path = event.currentTarget.dataset.path;
+      const artistCardToHideList = document.querySelectorAll(`.catalog__artist-card_active:not([data-target="${path}"])`);
+      const targetArtistCard = document.querySelector(`[data-target="${path}"]`);
+      const artistCardList = document.querySelector('.catalog__artist-card-list');
 
-      document.querySelectorAll(`.catalog__artist-card_active:not([data-target="${path}"])`).forEach(function(artistCardToHide) {
+      artistBtnList.forEach(artistBtn => {
+        artistBtn.classList.remove('catalog__artist-btn_active');
+      });
+      artistBtn.classList.add('catalog__artist-btn_active');
+      artistCardToHideList.forEach(artistCardToHide => {
         artistCardToHide.classList.remove('catalog__artist-card_active');
       })
-      document.querySelector(`[data-target="${path}"]`).classList.add('catalog__artist-card_active');
+      targetArtistCard.classList.add('catalog__artist-card_active');
       if (document.body.clientWidth <= 850) {
-        document.querySelector('.catalog__artist-card-list').scrollIntoView({behavior: 'smooth'});
+        artistCardList.scrollIntoView({behavior: 'smooth'});
       }
     })
-  })
+  });
 
-  document.querySelectorAll('.catalog__btn').forEach(function(countryBtn) {
-    countryBtn.addEventListener('click', function(event) {
-      document.querySelectorAll('.catalog__btn').forEach(function(countryBtnList) {
-        countryBtnList.classList.remove('catalog__btn_active');
+  countryBtnList.forEach(countryBtn => {
+    countryBtn.addEventListener('click', event => {
+      const path = event.currentTarget.dataset.path;
+      const countryArtistsToShow = document.querySelectorAll(`[data-target="${path}"]`);
+      const targetFirstArtist = document.querySelector(`[data-target="${path}"] .catalog__artist-btn`);
+      const countryArtistsToHide = document.querySelectorAll(`.catalog__artist-by-country-item_active:not([data-target="${path}"])`);
+
+      countryBtnList.forEach(countryBtn => {
+        countryBtn.classList.remove('catalog__btn_active');
       })
       countryBtn.classList.add('catalog__btn_active');
-
-      const path = event.currentTarget.dataset.path;
-
-      document.querySelectorAll(`[data-target="${path}"]`).forEach(function(countryArtistsToShow) {
-        countryArtistsToShow.classList.add('catalog__artist-by-country-item_active');
+      countryArtistsToShow.forEach(countryArtist => {
+        countryArtist.classList.add('catalog__artist-by-country-item_active');
       })
-      document.querySelector(`[data-target="${path}"] .catalog__artist-btn`).click();
-      document.querySelectorAll(`.catalog__artist-by-country-item_active:not([data-target="${path}"])`).forEach(function(countryArtistsToHide) {
-        countryArtistsToHide.classList.remove('catalog__artist-by-country-item_active');
+      targetFirstArtist.click();
+      countryArtistsToHide.forEach(countryArtist => {
+        countryArtist.classList.remove('catalog__artist-by-country-item_active');
       })
     })
-  })
+  });
 
-  document.querySelector('.events__btn').addEventListener('click', function(event) {
-    document.querySelectorAll('.events__item').forEach(function(eventListToShow) {
-      console.log(eventListToShow);
-      eventListToShow.style.display = 'block';
-      eventListToShow.clientWidth;
-      eventListToShow.style.opacity = 1;
+  eventsBtn.addEventListener('click', () => {
+    eventListToShow.forEach(event => {
+      event.classList.add('events__item_active');
     })
-    document.querySelector('.events__btn').classList.add('events__btn_hidden');
-  })
+    eventsBtn.classList.add('events__btn_hidden');
+  });
 
-  document.querySelectorAll('.gallery__slide').forEach(function(gallerySlide) {
-    gallerySlide.addEventListener('click', function(event) {
+  gallerySlideList.forEach(gallerySlide => {
+    gallerySlide.addEventListener('click', event => {
       const path = event.currentTarget.dataset.path;
+      const targetModal = document.querySelector(`[data-target="${path}"]`);
+      const activeModalList = document.querySelectorAll(`.gallery__modal_active:not([data-target="${path}"])`);
 
-      // Get scrollWidth
-      let div = document.createElement('div');
+      const div = document.createElement('div');
       div.style.overflowY = 'scroll';
       div.style.width = '50px';
       div.style.height = '50px';
       document.body.append(div);
-      let scrollWidth = div.offsetWidth - div.clientWidth;
+      const scrollWidth = div.offsetWidth - div.clientWidth;
       div.remove();
-
-      document.querySelector(`[data-target="${path}"]`).classList.add('gallery__modal_active');
       body.style.paddingRight = scrollWidth + 'px';
       body.classList.add('modal-active');
-      document.querySelectorAll(`.gallery__modal_active:not([data-target="${path}"])`).forEach(function(modalActive) {
-        modalActive.classList.remove('gallery__modal_active');
+
+      targetModal.classList.add('gallery__modal_active');
+      activeModalList.forEach(activeModal => {
+        activeModal.classList.remove('gallery__modal_active');
       })
     })
-  })
+  });
 
-  document.querySelectorAll('.gallery__modal-close').forEach(function(modalClose) {
-    modalClose.addEventListener('click', function() {
-      document.querySelectorAll('.gallery__modal_active').forEach(function(modalActive) {
-        modalActive.classList.remove('gallery__modal_active');
-      })
-      document.querySelector('.modal-active').classList.remove('modal-active');
+  closeModalBtnList.forEach(closeModalBtn => {
+    closeModalBtn.addEventListener('click', () => {
+      const activeModalList = document.querySelectorAll('.gallery__modal_active');
+      const activeModalShade = document.querySelector('.modal-active');
+
+      activeModalList.forEach(activeModal => {
+        activeModal.classList.remove('gallery__modal_active');
+      });
+      activeModalShade.classList.remove('modal-active');
       body.style = '';
     })
-  })
+  });
 
-  const smoothLinks = document.querySelectorAll('a[href^="#"]');
-  for (let smoothLink of smoothLinks) {
-      smoothLink.addEventListener('click', function (e) {
-          e.preventDefault();
-          const id = smoothLink.getAttribute('href');
+  smoothLinkList.forEach(smoothLink => {
+    smoothLink.addEventListener('click', event => {
+      event.preventDefault();
+      const id = smoothLink.getAttribute('href');
+      const target = document.querySelector(id);
 
-          document.querySelector(id).scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-          });
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
       });
-  };
-})
+    });
+  });
+});

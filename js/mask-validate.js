@@ -1,12 +1,13 @@
-let priceInput = document.querySelectorAll(".publishings__price-input");
-let priceMask = new Inputmask({
+const priceInput = document.querySelectorAll(".publishings__price-input");
+const phoneInput = document.querySelector(".contacts__form-input[type='tel']");
+
+const priceMask = new Inputmask({
   mask: "9{0,3} [9{0,3}]",
   numericInput: true
 });
 priceMask.mask(priceInput);
 
-let phoneInput = document.querySelector(".contacts__form-input[type='tel']");
-let phoneMask = new Inputmask("+7 (999) 999-99-99");
+const phoneMask = new Inputmask("+7 (999) 999-99-99");
 phoneMask.mask(phoneInput);
 
 new window.JustValidate('.contacts__form', {
