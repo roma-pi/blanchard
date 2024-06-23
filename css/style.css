@@ -75,6 +75,17 @@ body {
   font-size: 16px;
   color: var(--black);
   height: min-content;
+  -ms-overflow-style: none; /* Скрыть стандартный скроллбар в IE/Edge */
+}
+
+@-moz-document url-prefix() {
+  body {
+    scrollbar-width: none; /* Применяется только в Firefox */
+  }
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Скрыть стандартный скроллбар в WebKit браузерах (Chrome, Safari, etc.) */
 }
 
 body::before {
